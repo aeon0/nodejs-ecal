@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-ecal",
+  "version": "1.0.3",
+  "description": "node module to use ecal",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 9000 test/sub.test.js & mocha --timeout 9000 test/pub.test.js",
+    "install": "cmake-js compile"
+  },
+  "author": "aeon0 <jdobler@protonmail.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "cmake-js": "^6.3.2",
+    "node-addon-api": "^5.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}

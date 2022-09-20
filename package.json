@@ -1,14 +1,16 @@
 {
   "name": "nodejs-ecal",
-  "version": "1.0.3",
-  "description": "node module to use ecal",
+  "version": "1.0.4",
+  "description": "Node.js wrapper for eCAL",
+  "keywords": ["ecal", "ipc", "sockets", "communication"],
+  "author": "aeon0 <jdobler@protonmail.com>",
+  "license": "MIT",
+  "repository": {"type": "git", "url": "https://github.com/aeon0/nodejs-ecal"},
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 9000 test/sub.test.js & mocha --timeout 9000 test/pub.test.js",
     "install": "cmake-js compile"
   },
-  "author": "aeon0 <jdobler@protonmail.com>",
-  "license": "MIT",
   "gypfile": true,
   "dependencies": {
     "bindings": "^1.5.0",

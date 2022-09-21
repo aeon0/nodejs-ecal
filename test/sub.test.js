@@ -9,7 +9,7 @@ describe("Test Subscriber", () => {
 
     var sub = new nodejsEcal.Subscriber("ecal_nodejs_test");
     var counter = 0;
-    sub.addReceiveCallback((msg) => {
+    sub.addReceiveCallback((topic, msg) => {
       const strMsg = Buffer.from(msg).toString("utf8");
       console.log("Recived: " + strMsg);
       counter++;

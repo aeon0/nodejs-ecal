@@ -11,7 +11,11 @@ class Publisher : public Napi::ObjectWrap<Publisher> {
 
     Publisher(const Napi::CallbackInfo& info);
     void send(const Napi::CallbackInfo& info);
+    void addEventCallback(const Napi::CallbackInfo& info);
 
   private:
+    void onEvent(const char* topicName, const struct eCAL::SPubEventCallbackData* data);
+
     eCAL::CPublisher _pub;
+    Napi::ThreadSafeFunction _tsFuncEventCb;
 };

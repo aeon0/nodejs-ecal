@@ -3,12 +3,20 @@ const promises = require("timers/promises");
 
 const main = async () => {
   ecal.initialize();
-  var sub = new ecal.Subscriber("ecal_nodejs_test");
+  var sub = new ecal.Subscriber("nodejs-ecal-example");
 
-  sub.addReceiveCallback((msg) => {
+  const receiveCb = (topic, msg) => {
     const strMsg = Buffer.from(msg).toString("utf8");
-    console.log("Recived: " + strMsg);
-  });
+    console.log("Recived from " + topic + ": " + strMsg);
+  };
+  sub.addReceiveCallback(receiveCb);
+
+  const eventCb = (topic, event) => {
+    console.log("Event from " + topic);
+    console.log(event);
+  };
+  sub.addEventCallback(0, eventCb); // Connected event
+  sub.addEventCallback(1, eventCb); // Disconnected event
 
   while (ecal.ok()) {
     await promises.setTimeout(1000);

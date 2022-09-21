@@ -1,6 +1,6 @@
 {
   "name": "nodejs-ecal",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Node.js wrapper for eCAL",
   "keywords": ["ecal", "ipc", "sockets", "communication"],
   "author": "aeon0 <jdobler@protonmail.com>",

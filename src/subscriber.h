@@ -11,10 +11,13 @@ class Subscriber : public Napi::ObjectWrap<Subscriber> {
 
     Subscriber(const Napi::CallbackInfo& info);
     void addReceiveCallback(const Napi::CallbackInfo& info);
+    void addEventCallback(const Napi::CallbackInfo& info);
 
   private:
-    void onReceive(const eCAL::SReceiveCallbackData* data_);
+    void onReceive(const char* topicName, const struct eCAL::SReceiveCallbackData* data);
+    void onEvent(const char* topicName, const struct eCAL::SSubEventCallbackData* data);
 
     eCAL::CSubscriber _sub;
-    Napi::ThreadSafeFunction _tsFunc;
+    Napi::ThreadSafeFunction _tsFuncReceiveCb;
+    Napi::ThreadSafeFunction _tsFuncEventCb;
 };

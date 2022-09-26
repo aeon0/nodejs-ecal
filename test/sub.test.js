@@ -1,13 +1,13 @@
 const assert = require("assert");
-const nodejsEcal = require(".."); // loads ../index.js
+const ecal = require(".."); // loads ../index.js
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 describe("Test Subscriber", () => {
   it("subscriber", async () => {
-    nodejsEcal.initialize();
+    ecal.initialize();
 
-    var sub = new nodejsEcal.Subscriber("ecal_nodejs_test");
+    var sub = new ecal.Subscriber("ecal-nodejs-test");
     var counter = 0;
     sub.addReceiveCallback((topic, msg) => {
       const strMsg = Buffer.from(msg).toString("utf8");
@@ -15,8 +15,9 @@ describe("Test Subscriber", () => {
       counter++;
     });
 
-    await sleep(1200);
+    await sleep(1500);
     // We should recive at least one message
     assert(counter > 0);
+    ecal.finalize();
   });
 });

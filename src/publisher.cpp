@@ -8,8 +8,6 @@ Publisher::Publisher(const Napi::CallbackInfo& info) :
 #if SHOW_DEBUG_COMMENTS
   std::cout << "[DEBUG] Create Publisher: " << topic.ToString().Utf8Value() << std::endl;
 #endif
-  auto ecalNodeName = "Nodejs-eCAL Publisher: " + topic.ToString().Utf8Value();
-  eCAL::Initialize(0, 0, ecalNodeName.c_str());
   _pub = eCAL::CPublisher(topic);
 }
 
@@ -26,10 +24,13 @@ void Publisher::send(const Napi::CallbackInfo& info) {
 
 void Publisher::addEventCallback(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Function napiFunction = info[1].As<Napi::Function>();
+  
   auto eventType = eCAL_Publisher_Event(static_cast<int>(info[0].As<Napi::Number>()));
+  Napi::Function napiFunction = info[1].As<Napi::Function>();
   _tsFuncEventCb = Napi::ThreadSafeFunction::New(env, napiFunction, "Callback", 0, 1);
-  _pub.AddEventCallback(eventType, std::bind(&Publisher::onEvent, this, std::placeholders::_1, std::placeholders::_2));
+
+  using namespace std::placeholders;
+  _pub.AddEventCallback(eventType, std::bind(&Publisher::onEvent, this, _1, _2));
 }
 
 void Publisher::onEvent(const char* topicName, const eCAL::SPubEventCallbackData* data) {

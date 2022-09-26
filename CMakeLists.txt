@@ -17,9 +17,11 @@ include_directories(
   ${NODE_ADDON_API_DIR}
 )
 
+file(GLOB HEADER_FILES "src/*.h")
 file(GLOB SOURCE_FILES "src/*.cpp")
 add_library(${PROJECT_NAME} SHARED
   ${SOURCE_FILES}
+  ${HEADER_FILES}
   ${CMAKE_JS_SRC}
 )
 

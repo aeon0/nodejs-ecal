@@ -15,15 +15,20 @@ void Subscriber::addReceiveCallback(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Function napiFunction = info[0].As<Napi::Function>();
   _tsFuncReceiveCb = Napi::ThreadSafeFunction::New(env, napiFunction, "Callback", 0, 1);
-  _sub.AddReceiveCallback(std::bind(&Subscriber::onReceive, this, std::placeholders::_1, std::placeholders::_2));
+
+  using namespace std::placeholders;
+  _sub.AddReceiveCallback(std::bind(&Subscriber::onReceive, this, _1, _2));
 }
 
 void Subscriber::addEventCallback(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
-  Napi::Function napiFunction = info[1].As<Napi::Function>();
+
   auto eventType = eCAL_Subscriber_Event(static_cast<int>(info[0].As<Napi::Number>()));
+  Napi::Function napiFunction = info[1].As<Napi::Function>();
   _tsFuncEventCb = Napi::ThreadSafeFunction::New(env, napiFunction, "Callback", 0, 1);
-  _sub.AddEventCallback(eventType, std::bind(&Subscriber::onEvent, this, std::placeholders::_1, std::placeholders::_2));
+
+  using namespace std::placeholders;
+  _sub.AddEventCallback(eventType, std::bind(&Subscriber::onEvent, this, _1, _2));
 }
 
 void Subscriber::onReceive(const char* topicName, const eCAL::SReceiveCallbackData* data) {

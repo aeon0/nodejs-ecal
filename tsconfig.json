@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "noImplicitAny": false,
+    "outDir": "./build_tsc",
+    "strict": true
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "build", "build_tsc"]
+}

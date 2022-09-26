@@ -4,6 +4,8 @@
 #include <ecal/ecal.h>
 #include "subscriber.h"
 #include "publisher.h"
+#include "client.h"
+#include "server.h"
 
 
 Napi::Boolean ok(const Napi::CallbackInfo& info) {
@@ -26,6 +28,8 @@ void initialize(const Napi::CallbackInfo& info) {
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   Subscriber::Init(env, exports);
   Publisher::Init(env, exports);
+  Client::Init(env, exports);
+  Server::Init(env, exports);
 
   exports.Set("ok", Napi::Function::New(env, ok));
   exports.Set("finalize", Napi::Function::New(env, finalize));

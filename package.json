@@ -10,8 +10,8 @@
   "types": "index.d.ts",
   "scripts": {
     "build-tsc": "./node_modules/typescript/bin/tsc",
-    "test": "mocha --timeout 9000 test/sub.test.js & mocha --timeout 9000 test/pub.test.js",
-    "install": "cmake-js compile && npm run build-tsc"
+    "test": "mocha --exit --timeout 9000 test/*.test.js",
+    "install": "cmake-js compile"
   },
   "gypfile": true,
   "dependencies": {

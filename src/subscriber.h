@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <napi.h>
 #include <ecal/ecal.h>

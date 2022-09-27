@@ -3,7 +3,14 @@
 eCAL wrapper for Nodejs. Check out ecal here: https://github.com/eclipse-ecal/ecal.
 
 ## Dependencies
-eCAL musst be installed on the system. See docs: https://eclipse-ecal.github.io/ecal/getting_started/setup.html
+CMake, some compiler, protobuf and eCAL musst be installed on the system. See docs: https://eclipse-ecal.github.io/ecal/getting_started/setup.html
+
+```bash
+# Linux
+sudo add-apt-repository ppa:ecal/ecal-latest
+sudo apt-get update
+sudo apt-get install ecal cmake g++ libprotobuf-dev protobuf-compiler
+```
 
 ## Usage
 ```bash

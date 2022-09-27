@@ -79,7 +79,7 @@ void Client::onEvent(const char* name, const struct eCAL::SClientEventCallbackDa
     jsCallback.Call({
       Napi::String::New(env, cpName),
       obj
-      });
+    });
   };
   napi_status status = _tsFuncEventCb.BlockingCall(callback);
   _tsFuncEventCb.Release();

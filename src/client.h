@@ -10,7 +10,6 @@ public:
   static void Init(Napi::Env env, Napi::Object& exports);
 
   Client(const Napi::CallbackInfo& info);
-  // const std::string& method_name_, const std::string& request_, int timeout_ = -1
   void callAsync(const Napi::CallbackInfo& info);
 
   void addResponseCallback(const Napi::CallbackInfo& info);

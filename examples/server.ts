@@ -1,11 +1,12 @@
-const ecal = require(".."); // if installed with npm its require("nodejs-ecal")
-const promises = require("timers/promises");
+import * as ecal from "../index"
+import * as promises from "timers/promises"
+
 
 const main = async () => {
   ecal.initialize();
   var server = new ecal.Server("nodejs-example-service");
 
-  const methodCb = (method, reqType, respType, request) => {
+  const methodCb: ecal.MethodCallback = (method, reqType, respType, request) => {
     console.log("");
     console.log("[Server] Method: " + method);
     console.log("reqType: " + reqType);
@@ -16,12 +17,12 @@ const main = async () => {
   };
   server.addMethodCallback("echo", "", "", methodCb);
 
-  const eventCb = (name, event) => {
+  const eventCb: ecal.ServerEventCallback = (name, event) => {
     console.log("[Server] Event from " + name);
     console.log(event);
   };
-  server.addEventCallback(0, eventCb); // Connected event
-  server.addEventCallback(1, eventCb); // Disconnected event
+  server.addEventCallback(ecal.eCAL_Server_Event.server_event_connected, eventCb);
+  server.addEventCallback(ecal.eCAL_Server_Event.server_event_disconnected, eventCb);
 
   while (ecal.ok()) {
     await promises.setTimeout(1000);

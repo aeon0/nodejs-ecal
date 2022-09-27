@@ -4,9 +4,9 @@
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": false,
-    "outDir": "./build_tsc",
+    "outDir": "./dist",
     "strict": true
   },
   "include": ["."],
-  "exclude": ["node_modules", "build", "build_tsc"]
+  "exclude": ["node_modules", "build", "dist"]
 }

@@ -26,7 +26,7 @@ export type SubEventCallback = (topic: string, event: SSubEventCallbackData) => 
 export type ReceiveCallback = (topic: string, data: ArrayBuffer) => void;
 export interface Subscriber {
   addReceiveCallback(callback: ReceiveCallback): void;
-  addEventCallback(callback: SubEventCallback): void;
+  addEventCallback(event: eCAL_Subscriber_Event, callback: SubEventCallback): void;
 }
 export var Subscriber: {
     new(topic: string): Subscriber
@@ -49,7 +49,7 @@ export interface SPubEventCallbackData {
 export type PubEventCallback = (topic: string, event: SPubEventCallbackData) => void;
 export interface Publisher {
   send(data: ArrayBuffer, timestamp: number): void;
-  addEventCallback(callback: PubEventCallback): void;
+  addEventCallback(event: eCAL_Publisher_Event, callback: PubEventCallback): void;
 }
 export var Publisher: {
     new(topic: string): Publisher
@@ -70,7 +70,7 @@ export type ServerEventCallback = (serviceName: string, event: SServerEventCallb
 export type MethodCallback = (method: string, reqType: string, respType: string, request: string) => string;
 export interface Server {
   addMethodCallback(method: string, reqType: string, respType: string, callback: MethodCallback): void;
-  addEventCallback(callback: ServerEventCallback): void;
+  addEventCallback(event: eCAL_Server_Event, callback: ServerEventCallback): void;
 }
 export var Server: {
     new(serviceName: string): Server
@@ -108,7 +108,7 @@ export type ResponseCallback = (response: SServiceResponse) => void;
 export interface Client {
   callAsync(method: string, request: string, timeout: number): void;
   addResponseCallback(callback: ResponseCallback): void;
-  addEventCallback(callback: ClientEventCallback): void;
+  addEventCallback(event: eCAL_Client_Event, callback: ClientEventCallback): void;
 }
 export var Client: {
     new(serviceName: string): Client

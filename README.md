@@ -16,11 +16,11 @@ sudo apt-get install ecal cmake g++ libprotobuf-dev protobuf-compiler
 ```bash
 npm install -s nodejs-ecal
 ```
-Note that only communication with ArrayBuffers is supported. This is because specific interface description (e.g. for protobuf) would need to be known at compile time as node addons ship as dynamic libs.
+Note that only communication with ArrayBuffers is supported. This is because specific interface description (e.g. for protobuf) would need to be known at compile time as node addons ship as dynamic libs. That means on Node.js side the user has to take care of data serialization.
 
-That means on Node.js side the user has to take care of data serialization.
 
-See examples at: [simple_publisher.js](examples/simple_publisher.js), [simple_subscriber.js](examples/simple_subscriber.js)
+Current features the wrapper includes are: Client, Server, Publisher, Subscriber.
+For examples check the [examples](examples/) folder.
 
 ## Dev
 Project is using cmake-js: https://github.com/cmake-js/cmake-js.

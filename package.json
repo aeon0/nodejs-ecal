@@ -1,6 +1,6 @@
 {
   "name": "nodejs-ecal",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Node.js wrapper for eCAL",
   "keywords": [
     "ecal",
@@ -19,7 +19,8 @@
   "scripts": {
     "build-ts": "./node_modules/typescript/bin/tsc",
     "test": "mocha -r ts-node/register --exit --timeout 4000 test/*.test.ts",
-    "install": "cmake-js compile && npm run build-ts"
+    "install": "cmake-js compile",
+    "prepublishOnly": "npm run build-ts"
   },
   "gypfile": true,
   "dependencies": {

@@ -95,14 +95,14 @@ export enum eCallState {
   call_state_failed
 }
 export interface SServiceResponse {
-  hostName: string,
-  serviceName: string,
-  methodName: string,
-  errorMsg: string,
-  serviceId: string,
+  host_name: string,
+  service_name: string,
+  method_name: string,
+  error_msg: string,
+  service_id: string,
   retState: number,
   response: string,
-  callState: eCallState,
+  call_state: eCallState,
 }
 export type ResponseCallback = (response: SServiceResponse) => void;
 export interface Client {
